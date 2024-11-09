@@ -61,6 +61,12 @@ def IsMember(n,L):
         return IsMember(n,Tail(L))
 def konso(e, L):
     return [e] + L
+
+def SumElmnt(L):
+    if Isempty(L):
+        return 0
+    else: 
+        return FirstElmnt(L) + SumElmnt(Tail(L))
 ## Bagian 2
 
 # Definisi dan Spesifikasi Type
@@ -88,7 +94,8 @@ def MakeSetMhs(L):
             return konso(FirstElmnt(L),MakeSetMhs(Tail(L)))
 
 def AvgNilai(mhs):
-    return
+    return SumElmnt(Nilai(mhs)) / banyaknilai(Nilai(mhs))
+
 def banyaknilai(mhs):
     if Isempty(Nilai(mhs)):
         return 0
@@ -96,7 +103,7 @@ def banyaknilai(mhs):
         return 1 + banyaknilai(MakeMhs(NIM(mhs),Nama(mhs),Kelas(mhs),Tail(Nilai(mhs))))
     
 print(banyaknilai(MakeMhs("122","Jidan","B",[25,30])))
-print(AvgNilai(MakeMhs("122","Jidan","B",[25,30])))
+print("avg",AvgNilai(MakeMhs("122","Jidan","B",[10,10,10])))
 
     
 
