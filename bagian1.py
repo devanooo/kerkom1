@@ -106,7 +106,7 @@ print(banyaknilai(MakeMhs("122","Jidan","B",[25,30])))
 print("avg",AvgNilai(MakeMhs("122","Jidan","B",[10,10,10])))
 
     
-
+#tes jidan
 
 # print(MakeSetMhs([MakeMhs("123",'Devano','A',[20]),
 #                   MakeMhs("122","Jidan","B",[25,30]),
