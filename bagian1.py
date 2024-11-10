@@ -76,13 +76,13 @@ def SumElmnt(L):
 # Definisi dan Spesifikasi Konstruktor
 # MakeSetMhs : ....
 # {...}
-def IsMemberNIM(nim,L):
-    if Isempty(L):
+def IsMemberNIM(nim,mhs):
+    if Isempty(mhs):
         return False
-    elif NIM(FirstElmnt(L)) == nim:
+    elif NIM(FirstElmnt(mhs)) == nim:
         return True
     else:
-        return IsMemberNIM(nim, Tail(L))
+        return IsMemberNIM(nim, Tail(mhs))
 
 def MakeSetMhs(L):
     if Isempty(L):
@@ -93,21 +93,73 @@ def MakeSetMhs(L):
         else:
             return konso(FirstElmnt(L),MakeSetMhs(Tail(L)))
 
-def AvgNilai(mhs):
-    return SumElmnt(Nilai(mhs)) / banyaknilai(Nilai(mhs))
-
 def banyaknilai(mhs):
     if Isempty(Nilai(mhs)):
         return 0
     else:
         return 1 + banyaknilai(MakeMhs(NIM(mhs),Nama(mhs),Kelas(mhs),Tail(Nilai(mhs))))
-    
-print(banyaknilai(MakeMhs("122","Jidan","B",[25,30])))
-print("avg",AvgNilai(MakeMhs("122","Jidan","B",[10,10,10])))
+
+def AvgNilai(mhs):
+    if Isempty(Nilai(mhs)):
+        return 0
+    else:
+        return SumElmnt(Nilai(mhs))/banyaknilai(mhs)
+
+# print("avg",AvgNilai(MakeMhs("122","Jidan","B",[10,10,10])))
+# print(banyaknilai(MakeMhs("122","Jidan","B",[90,90,90])))
+
+def MhsLulus(mhs):
+    if Isempty(mhs):
+        return[]
+    else:
+        if AvgNilai(FirstElmnt(mhs)) > 70:
+            return konso(FirstElmnt(mhs),MhsLulus(Tail(mhs)))
+        else:
+            return MhsLulus(Tail(mhs))
+print(MhsLulus([MakeMhs("122","Jidan","B",[90,90,90]),MakeMhs("122","Jidan","B",[10,10,10])]))
+
+def TidakKuis(mhs):
+    if Isempty(mhs):
+        return[]
+    else:
+        if Isempty(Nilai(FirstElmnt(mhs))):
+            return konso(FirstElmnt(mhs),TidakKuis(Tail(mhs)))
+        else:
+            return TidakKuis(Tail(mhs))
+
+print(TidakKuis([MakeMhs("122","Jidan","B",[]),MakeMhs("122","Jidan","B",[10,10,10])]))
 
     
-#tes jidan
+def maxelmt(mhs):
+    if Isempty(mhs):
+        return None
+    elif Isempty(Tail(mhs)):
+        return FirstElmnt(mhs)
+    else:
+        if FirstElmnt(mhs) > maxelmt(Tail(mhs)):
+            return FirstElmnt(mhs)
+        else: 
+            return maxelmt(Tail(mhs))
+            
+def nilaitertinggi(mhs):
+    if Isempty(Tail(mhs)):
+        return AvgNilai(FirstElmnt(mhs))
+    else:
+        if AvgNilai(FirstElmnt(mhs)) > AvgNilai(FirstElmnt(Tail(mhs))):
+            return nilaitertinggi(konso(FirstElmnt(mhs),Tail(Tail(mhs))))
+        else:
+            return nilaitertinggi(Tail(mhs))
 
+def nilaitertinggikelas(kelas,mhs):
+    return
+
+# No gw blm sholat bntr sama mau makan gacoan(kudus ada gacoan anjay)
+# print(nilaitertinggi([MakeMhs("123",'Devano','A',[20]),
+#                   MakeMhs("122","Jidan","B",[25,10]),
+#                   MakeMhs("123",'Devano','A',[90,80])]))
+# [mhs1,mhs2] maxelemnt(avgnilai(mhs))
+# print(maxelmt([1,2,3,4,5]))
+#tes jidan 
 # print(MakeSetMhs([MakeMhs("123",'Devano','A',[20]),
 #                   MakeMhs("122","Jidan","B",[25,30]),
 #                   MakeMhs("123",'Devano','A',[20])]))
