@@ -187,7 +187,7 @@ def NilaiTertinggiKelas(kelas,mhs):
     else:
         if IsEmpty(Tail(SetKelas(kelas,mhs))):
             return FirstElmnt(SetKelas(kelas,mhs))
-        if IsEmpty(AvgNilai(FirstElmnt(SetKelas(kelas,mhs)))):
+        elif IsEmpty(AvgNilai(FirstElmnt(SetKelas(kelas,mhs)))):
             return NilaiTertinggiKelas(kelas,Tail(SetKelas(kelas,mhs)))
         elif AvgNilai(FirstElmnt(SetKelas(kelas,mhs))) > AvgNilai(FirstElmnt(Tail(SetKelas(kelas,mhs)))):
             return NilaiTertinggiKelas(kelas,konso(FirstElmnt(SetKelas(kelas,mhs)),Tail(Tail(SetKelas(kelas,mhs)))))
